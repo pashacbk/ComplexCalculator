@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="btt_7">7</string>
+    <string name="btt_8">8</string>
+    <string name="btt_9">9</string>
+    <string name="btt_4">4</string>
+    <string name="btt_5">5</string>
+    <string name="btt_6">6</string>
+    <string name="btt_plus">+</string>
+    <string name="btt_min">-</string>
+    <string name="btt_mull">*</string>
+    <string name="btt_div">/</string>
+    <string name="btt_del">del</string>
+    <string name="btt_equal">=</string>
+    <string name="btt_0">0</string>
+    <string name="btt_point">.</string>
+    <string name="btt_3">3</string>
+    <string name="btt_2">2</string>
+    <string name="btt_1">1</string>
+    <string name="btt_rad">\u221A</string>
+    <string name="btt_par2">)</string>
+    <string name="btt_par1">(</string>
+    <string name="btt_exp">^</string>
+    <string name="btt_e">e</string>
+    <string name="btt_pi">\u03C0</string>
+    <string name="btt_fact">!</string>
+    <string name="btt_log">log</string>
+    <string name="btt_ln">ln</string>
+    <string name="btt_tan">tan</string>
+    <string name="btt_cos">cos</string>
+    <string name="btt_sin">sin</string>
+</resources>
