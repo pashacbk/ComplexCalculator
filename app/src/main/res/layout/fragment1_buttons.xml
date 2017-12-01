@@ -26,6 +26,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_7"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -35,6 +36,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_8"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -44,6 +46,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_9"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
 
@@ -61,6 +64,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_4"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -70,6 +74,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_5"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -79,6 +84,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_6"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
 
@@ -96,6 +102,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_1"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -105,6 +112,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_2"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -114,6 +122,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_3"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
 
@@ -131,6 +140,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_point"
                 android:textSize="30dp"
+                android:onClick="isNotImplemented"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -140,6 +150,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_0"
                 android:textSize="30dp"
+                android:onClick="onClickNumber"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
             <Button
@@ -149,6 +160,7 @@
                 android:layout_weight="1"
                 android:text="@string/btt_equal"
                 android:textSize="30dp"
+                android:onClick="onClickEqual"
                 android:textColor="@color/text_color"
                 android:background="@color/main1"/>
 
@@ -163,12 +175,13 @@
         android:orientation="vertical"
         android:background="@color/main2">
         <Button
-            android:id="@+id/btt_del"
+            android:id="@+id/btt_clear"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/btt_del"
             android:textSize="30dp"
+            android:onClick="onClickClear"
             android:textColor="@color/text_color"
             android:background="@color/main2"/>
         <Button
@@ -178,6 +191,7 @@
             android:layout_weight="1"
             android:text="@string/btt_div"
             android:textSize="30dp"
+            android:onClick="onClickOperator"
             android:textColor="@color/text_color"
             android:background="@color/main2"/>
         <Button
@@ -187,6 +201,7 @@
             android:layout_weight="1"
             android:text="@string/btt_mull"
             android:textSize="30dp"
+            android:onClick="onClickOperator"
             android:textColor="@color/text_color"
             android:background="@color/main2"/>
         <Button
@@ -196,6 +211,7 @@
             android:layout_weight="1"
             android:text="@string/btt_min"
             android:textSize="30dp"
+            android:onClick="onClickOperator"
             android:textColor="@color/text_color"
             android:background="@color/main2"/>
         <Button
@@ -205,6 +221,7 @@
             android:layout_weight="1"
             android:text="@string/btt_plus"
             android:textSize="30dp"
+            android:onClick="onClickOperator"
             android:textColor="@color/text_color"
             android:background="@color/main2"/>
 

@@ -8,11 +8,16 @@
     tools:context="com.interntask.calculator.CalculatorActivity">
 
     <TextView
-        android:id="@+id/show_numbers"
+        android:id="@+id/text_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".4"
-        android:text="test text"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="70sp"
+        android:gravity="bottom|right"
+        android:nestedScrollingEnabled="false"
+        android:maxLines="2"
+        android:maxLength="17"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/buttons_container"

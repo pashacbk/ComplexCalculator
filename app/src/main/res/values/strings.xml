@@ -29,4 +29,5 @@
     <string name="btt_tan">tan</string>
     <string name="btt_cos">cos</string>
     <string name="btt_sin">sin</string>
+    <string name="isNotImplemented">This button is not implemented!</string>
 </resources>
