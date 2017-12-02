@@ -30,4 +30,7 @@
     <string name="btt_cos">cos</string>
     <string name="btt_sin">sin</string>
     <string name="isNotImplemented">This button is not implemented!</string>
+    <string name="action_history">History</string>
+    <string name="action_logout">Logout</string>
+    <string name="divideByZeroMsg">Can\'t divide by zero!</string>
 </resources>

@@ -1,30 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.interntask.calculator.CalculatorActivity">
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:orientation="vertical"
+tools:context="com.interntask.calculator.CalculatorActivity">
 
-    <TextView
-        android:id="@+id/text_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".3"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="50sp"
-        android:gravity="bottom|right"
-        android:nestedScrollingEnabled="false"
-        android:maxLines="2"
-        android:maxLength="17"/>
+<android.support.v7.widget.Toolbar
+    android:id="@+id/menu_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+<TextView
+    android:id="@+id/text_view"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight=".3"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:textSize="40sp"
+    android:gravity="bottom|right"
+    android:nestedScrollingEnabled="false"
+    android:maxLines="2"
+    android:maxLength="17"/>
+
+<ViewFlipper
+    android:id="@+id/view_flipper"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight=".7">
 
     <LinearLayout
         android:id="@+id/show_buttons"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight=".7">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/one"
             android:layout_width="0dp"
@@ -171,7 +186,7 @@
                     android:textColor="@color/text_color"
                     android:background="@color/main1"/>
 
-                </LinearLayout>
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/one.three"
                 android:layout_width="match_parent"
@@ -370,5 +385,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/history_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Display history"/>
+
+</ViewFlipper>
 
 </LinearLayout>

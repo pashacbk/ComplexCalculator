@@ -1,18 +1,24 @@
 package com.interntask.calculator;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import java.util.regex.Pattern;
 
-public class CalculatorActivity extends FragmentActivity {
+public class CalculatorActivity extends AppCompatActivity{
 
     private TextView mScreen;
     private String mDisplay = "";
@@ -30,8 +36,55 @@ public class CalculatorActivity extends FragmentActivity {
             pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
         }
 
+        if(savedInstanceState != null) {
+            mDisplay = savedInstanceState.getString("display_value");
+            mResult = savedInstanceState.getString("result");
+            mCurrentOperator = savedInstanceState.getString("currentOperator");
+        }
+
         mScreen = (TextView)findViewById(R.id.text_view);
         mScreen.setText(mDisplay);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.menu_toolbar);
+        setSupportActionBar(myToolbar);
+
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("display_value", String.valueOf(mScreen.getText()));
+        savedInstanceState.putString("result", mResult);
+        savedInstanceState.putString("currentOperator", mCurrentOperator);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_history:
+                // User chose the "History" item, show the app settings UI...
+                ViewFlipper vf  = (ViewFlipper) findViewById(R.id.view_flipper);
+                vf.showNext();
+                return true;
+
+            case R.id.action_logout:
+                // User chose the "Logout" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
     private void updateScreen(){
@@ -104,23 +157,28 @@ public class CalculatorActivity extends FragmentActivity {
             case "+": return Double.valueOf(a) + Double.valueOf(b);
             case "-": return Double.valueOf(a) - Double.valueOf(b);
             case "*": return Double.valueOf(a) * Double.valueOf(b);
-            case "/": try{
+            case "/": if(Double.valueOf(b) != 0) {
                 return Double.valueOf(a) / Double.valueOf(b);
-            }catch (Exception e){
-                Log.d("Calc", e.getMessage());
+            }
+            else {
+                Toast.makeText(CalculatorActivity.this,
+                        R.string.divideByZeroMsg,
+                        Toast.LENGTH_LONG).show();
             }
             default: return -1;
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private boolean getResult(){
         if(mCurrentOperator == "") return false;
         String[] operation = mDisplay.split(Pattern.quote(mCurrentOperator));
         if(operation.length < 2) return false;
-        mResult = String.valueOf(operate(operation[0], operation[1], mCurrentOperator));
+        mResult = String.format("%.5f", operate(operation[0], operation[1], mCurrentOperator));
         return true;
     }
 
+    @SuppressLint("SetTextI18n")
     public void onClickEqual(View v){
         if(mDisplay == "") return;
         if(!getResult()) return;
@@ -134,3 +192,4 @@ public class CalculatorActivity extends FragmentActivity {
 
     }
 }
+
