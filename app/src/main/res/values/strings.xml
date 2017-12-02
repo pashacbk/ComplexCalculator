@@ -33,4 +33,7 @@
     <string name="action_history">History</string>
     <string name="action_logout">Logout</string>
     <string name="divideByZeroMsg">Can\'t divide by zero!</string>
+    <string name="dialog_text">Username</string>
+    <string name="dialog_btt">ok</string>
+    <string name="usernameMsg">Enter username!</string>
 </resources>

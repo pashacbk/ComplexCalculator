@@ -1,6 +1,7 @@
 package com.interntask.calculator;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.res.Configuration;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -24,6 +26,7 @@ public class CalculatorActivity extends AppCompatActivity{
     private String mDisplay = "";
     private String mCurrentOperator = "";
     private String mResult = "";
+    private String mCurrentUsername = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,11 @@ public class CalculatorActivity extends AppCompatActivity{
             mDisplay = savedInstanceState.getString("display_value");
             mResult = savedInstanceState.getString("result");
             mCurrentOperator = savedInstanceState.getString("currentOperator");
+            mCurrentUsername = savedInstanceState.getString("mCurrentUsername");
+        }
+
+        if(mCurrentUsername.trim().length() == 0) {
+            makeDialog();
         }
 
         mScreen = (TextView)findViewById(R.id.text_view);
@@ -56,6 +64,7 @@ public class CalculatorActivity extends AppCompatActivity{
         savedInstanceState.putString("display_value", String.valueOf(mScreen.getText()));
         savedInstanceState.putString("result", mResult);
         savedInstanceState.putString("currentOperator", mCurrentOperator);
+        savedInstanceState.putString("mCurrentUsername", mCurrentUsername);
     }
 
     @Override
@@ -63,6 +72,29 @@ public class CalculatorActivity extends AppCompatActivity{
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_toolbar, menu);
         return true;
+    }
+
+    public void makeDialog() {
+        final Dialog dialog = new Dialog(CalculatorActivity.this);
+        dialog.setContentView(R.layout.dialog);
+
+        final EditText dialogText = (EditText) dialog.findViewById(R.id.dialog_text);
+
+        Button dialogButton = (Button) dialog.findViewById(R.id.dialog_btt);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(dialogText.getText().toString().trim().length() != 0) {
+                    mCurrentUsername = dialogText.getText().toString();
+                    dialog.dismiss();
+                } else {
+                    Toast.makeText(CalculatorActivity.this,
+                            R.string.usernameMsg,
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        dialog.show();
     }
 
     @Override
@@ -77,6 +109,7 @@ public class CalculatorActivity extends AppCompatActivity{
             case R.id.action_logout:
                 // User chose the "Logout" action, mark the current item
                 // as a favorite...
+                makeDialog();
                 return true;
 
             default:
