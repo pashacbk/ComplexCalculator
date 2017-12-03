@@ -35,4 +35,9 @@
     <string name="divideByZeroMsg">Can\'t divide by zero!</string>
     <string name="usernameMsg">Enter username!</string>
     <string name="register_btt">Register</string>
+    <string name="action_clear_history">Clear History</string>
+    <string name="ok">ok</string>
+    <string name="cancel">cancel</string>
+    <string name="dialog_message">Are you sure?</string>
+    <string name="dialog_title">Clear history</string>
 </resources>

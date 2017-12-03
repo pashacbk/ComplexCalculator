@@ -1,9 +1,9 @@
 package com.interntask.calculator;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -19,10 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -101,6 +97,11 @@ public class CalculatorActivity extends AppCompatActivity{
                 }
                 return true;
 
+            case R.id.action_clear_history:
+                //user choose "Clear history" action
+                makeDialog();
+                return true;
+
             case R.id.action_logout:
                 // User chose the "Logout" action
                 Intent logout = new Intent(CalculatorActivity.this, RegisterActivity.class);
@@ -114,6 +115,29 @@ public class CalculatorActivity extends AppCompatActivity{
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    public void makeDialog() {
+        final Dialog dialog = new Dialog(CalculatorActivity.this);
+        dialog.setContentView(R.layout.dialog);
+
+        Button okButton = (Button) dialog.findViewById(R.id.dialog_ok);
+        okButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<History> histor = History.listAll(History.class);
+                History.executeQuery("Delete from history where user_name = ?", mCurrentUsername);
+                dialog.dismiss();
+            }
+        });
+        Button cancelButton = (Button) dialog.findViewById(R.id.dialog_cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     private void updateScreen(){

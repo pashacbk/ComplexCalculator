@@ -7,4 +7,5 @@
     <color name="main2">#8c939e</color>
     <color name="side1">#75c5c6</color>
     <color name="text_color">#FFFFFF</color>
+    <color name="dialog_bg">#2f3234</color>
 </resources>

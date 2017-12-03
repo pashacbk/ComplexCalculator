@@ -8,9 +8,16 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/action_clear_history"
+        android:icon="@drawable/ic_clear_all_black_24dp"
+        android:title="@string/action_clear_history"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/action_logout"
         android:icon="@drawable/ic_exit_to_app_black_24dp"
         android:title="@string/action_logout"
         app:showAsAction="ifRoom"/>
+
 
 </menu>
