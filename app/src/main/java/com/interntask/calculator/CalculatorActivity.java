@@ -3,10 +3,12 @@ package com.interntask.calculator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.orm.query.Condition;
+import com.orm.query.Select;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class CalculatorActivity extends AppCompatActivity{
@@ -81,6 +88,17 @@ public class CalculatorActivity extends AppCompatActivity{
                 // User chose the "History" item
                 ViewFlipper vf  = (ViewFlipper) findViewById(R.id.view_flipper);
                 vf.showNext();
+
+                TextView textview = (TextView)findViewById(R.id.history_view);
+                textview.setMovementMethod(new ScrollingMovementMethod());
+                textview.setText("");
+                List<History> hist = History.findWithQuery(History.class,
+                        "Select * from history where user_name = ?", mCurrentUsername);
+                for(int i = hist.size()-1; i >= 0; i--) {
+                    textview.setText(textview.getText()+
+                            hist.get(i).operator1+hist.get(i).operation+
+                            hist.get(i).operator2+"="+hist.get(i).result+"\n");
+                }
                 return true;
 
             case R.id.action_logout:
@@ -186,6 +204,11 @@ public class CalculatorActivity extends AppCompatActivity{
         String[] operation = mDisplay.split(Pattern.quote(mCurrentOperator));
         if(operation.length < 2) return false;
         mResult = String.format("%.5f", operate(operation[0], operation[1], mCurrentOperator));
+        //set data in db
+        History history = new History(mCurrentUsername, operation[0], operation[1],
+                mCurrentOperator, mResult);
+        history.save();
+        Log.d(TAG1, history.operator1);
         return true;
     }
 
