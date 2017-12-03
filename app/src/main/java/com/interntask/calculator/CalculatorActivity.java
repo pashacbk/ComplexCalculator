@@ -1,7 +1,7 @@
 package com.interntask.calculator;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -21,6 +20,7 @@ import android.widget.ViewFlipper;
 import java.util.regex.Pattern;
 
 public class CalculatorActivity extends AppCompatActivity{
+    private final String TAG1 = "Username";
 
     private TextView mScreen;
     private String mDisplay = "";
@@ -46,9 +46,9 @@ public class CalculatorActivity extends AppCompatActivity{
             mCurrentUsername = savedInstanceState.getString("mCurrentUsername");
         }
 
-        if(mCurrentUsername.trim().length() == 0) {
-            makeDialog();
-        }
+        Intent intent = getIntent();
+        mCurrentUsername = intent.getStringExtra(RegisterActivity.EXTRA_USERNAME);
+        Log.d(TAG1, mCurrentUsername);
 
         mScreen = (TextView)findViewById(R.id.text_view);
         mScreen.setText(mDisplay);
@@ -74,42 +74,20 @@ public class CalculatorActivity extends AppCompatActivity{
         return true;
     }
 
-    public void makeDialog() {
-        final Dialog dialog = new Dialog(CalculatorActivity.this);
-        dialog.setContentView(R.layout.dialog);
-
-        final EditText dialogText = (EditText) dialog.findViewById(R.id.dialog_text);
-
-        Button dialogButton = (Button) dialog.findViewById(R.id.dialog_btt);
-        dialogButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(dialogText.getText().toString().trim().length() != 0) {
-                    mCurrentUsername = dialogText.getText().toString();
-                    dialog.dismiss();
-                } else {
-                    Toast.makeText(CalculatorActivity.this,
-                            R.string.usernameMsg,
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-        dialog.show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_history:
-                // User chose the "History" item, show the app settings UI...
+                // User chose the "History" item
                 ViewFlipper vf  = (ViewFlipper) findViewById(R.id.view_flipper);
                 vf.showNext();
                 return true;
 
             case R.id.action_logout:
-                // User chose the "Logout" action, mark the current item
-                // as a favorite...
-                makeDialog();
+                // User chose the "Logout" action
+                Intent logout = new Intent(CalculatorActivity.this, RegisterActivity.class);
+                startActivity(logout);
+                finish();
                 return true;
 
             default:
