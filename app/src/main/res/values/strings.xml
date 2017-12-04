@@ -40,4 +40,5 @@
     <string name="cancel">cancel</string>
     <string name="dialog_message">Are you sure?</string>
     <string name="dialog_title">Clear history</string>
+    <string name="username_hint">Username</string>
 </resources>

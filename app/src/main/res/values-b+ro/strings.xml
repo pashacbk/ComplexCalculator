@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="isNotImplemented">Acest buton nu a fost implementat!</string>
+    <string name="action_history">Istoric</string>
+    <string name="action_logout">Ieșire</string>
+    <string name="divideByZeroMsg">Nu se poate împărți la zero!</string>
+    <string name="usernameMsg">Introduceți numele de utilizator!</string>
+    <string name="register_btt">Înregistrare</string>
+    <string name="action_clear_history">Ștergeți Istoricul</string>
+    <string name="ok">da</string>
+    <string name="cancel">anulare</string>
+    <string name="dialog_message">Sunteți sigur?</string>
+    <string name="dialog_title">Ștergeți istoricul</string>
+    <string name="username_hint">Nume de utilizator</string>
+</resources>

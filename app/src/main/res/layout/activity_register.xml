@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/username_txt_bg"
             android:padding="10dp"
-            android:hint="Username"
+            android:hint="@string/username_hint"
             android:drawableLeft="@drawable/ic_person_black_24dp"
             android:textColorHint="#cccccc"/>
         <Button

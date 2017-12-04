@@ -2,15 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:background="@color/colorPrimaryDark"
+              android:padding="2dp"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:minWidth="300dp"
+              android:minHeight="200dp">
     <TextView
         android:id="@+id/dialog_title"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="2dp"
-        android:padding="4dp"
         android:gravity="center"
+        android:paddingLeft="4dp"
         android:text="@string/dialog_title"
         android:textSize="20dp"
         android:background="@color/dialog_bg"
@@ -21,8 +24,9 @@
         android:id="@+id/dialog_message"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="4dp"
         android:text="@string/dialog_message"
+        android:padding="2dp"
+        android:textSize="20dp"
         android:layout_marginBottom="1dp"
         android:textColor="@color/text_color"
         android:background="@color/dialog_bg"
@@ -33,14 +37,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:padding="2dp"
         android:layout_weight=".3">
     <Button
         android:id="@+id/dialog_ok"
         android:layout_width="0dp"
         android:background="@color/dialog_bg"
         android:layout_height="match_parent"
-        android:padding="4dp"
         android:layout_marginRight="1dp"
+        android:textSize="20dp"
         android:text="@string/ok"
         android:textColor="@color/text_color"
         android:layout_weight=".5"/>
@@ -49,7 +54,7 @@
         android:layout_width="0dp"
         android:background="@color/dialog_bg"
         android:layout_height="match_parent"
-        android:padding="4dp"
+        android:textSize="20dp"
         android:text="@string/cancel"
         android:textColor="@color/text_color"
         android:layout_weight=".5"/>
