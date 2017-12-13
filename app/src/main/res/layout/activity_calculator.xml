@@ -27,7 +27,7 @@
         android:gravity="bottom|right"
         android:nestedScrollingEnabled="false"
         android:maxLines="2"
-        android:maxLength="17"/>
+        android:maxLength="20"/>
     <ViewFlipper
         android:id="@+id/view_flipper"
         android:layout_width="match_parent"

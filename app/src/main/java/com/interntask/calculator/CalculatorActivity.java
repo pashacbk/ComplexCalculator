@@ -30,6 +30,7 @@ public class CalculatorActivity extends AppCompatActivity{
     private String mCurrentOperator = "";
     private String mResult = "";
     private String mCurrentUsername = "";
+    private boolean mNegativeFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,16 +157,24 @@ public class CalculatorActivity extends AppCompatActivity{
 
     private boolean isOperator(char op){
         switch (op){
-            case '+':
-            case '-':
-            case '*':
+            case '+':return true;
+            case '-':return true;
+            case '*':return true;
             case '/':return true;
             default: return false;
         }
     }
 
     public void onClickOperator(View v){
-        if(mDisplay == "") return;
+        if(mDisplay == "") {
+            Button b = (Button)v;
+            if(b.getText().toString().equals("-")) {
+                mDisplay += b.getText();
+                updateScreen();
+                //Log.d("Current_Operator", mCurrentOperator);
+                return;
+            } else return;
+        }
 
         Button b = (Button)v;
 
@@ -178,8 +187,12 @@ public class CalculatorActivity extends AppCompatActivity{
         if(mCurrentOperator != ""){
             Log.d("CalcX", ""+mDisplay.charAt(mDisplay.length()-1));
             if(isOperator(mDisplay.charAt(mDisplay.length()-1))){
-                mDisplay = mDisplay.replace(mDisplay.charAt(mDisplay.length()-1), b.getText().charAt(0));
+                Log.d("Display", mDisplay);
+                mDisplay = mDisplay.substring(0,mDisplay.length()-1)+b.getText().charAt(0);
+                //Log.d("Display", mDisplay);
                 updateScreen();
+                mCurrentOperator = b.getText().toString();
+                //Log.d("Current_Operator", mCurrentOperator);
                 return;
             }else{
                 getResult();
@@ -188,10 +201,14 @@ public class CalculatorActivity extends AppCompatActivity{
 
             }
             mCurrentOperator = b.getText().toString();
+            //Log.d("Current_Operator", mCurrentOperator);
         }
-        mDisplay += b.getText();
-        mCurrentOperator = b.getText().toString();
-        updateScreen();
+        if(!mDisplay.equals("-")) {
+            mDisplay += b.getText();
+            mCurrentOperator = b.getText().toString();
+            Log.d("Current_Operator", mCurrentOperator);
+            updateScreen();
+        }
     }
 
     private void clear(){
@@ -206,6 +223,9 @@ public class CalculatorActivity extends AppCompatActivity{
     }
 
     private double operate(String a, String b, String op){
+        Log.d("a", a);
+        Log.d("b", b);
+        Log.d("op", op);
         switch (op){
             case "+": return Double.valueOf(a) + Double.valueOf(b);
             case "-": return Double.valueOf(a) - Double.valueOf(b);
@@ -225,9 +245,20 @@ public class CalculatorActivity extends AppCompatActivity{
     @SuppressLint("DefaultLocale")
     private boolean getResult(){
         if(mCurrentOperator == "") return false;
+        if(mDisplay.charAt(0) == '-') {
+            mDisplay = mDisplay.substring(1);
+            mNegativeFlag = true;
+        }
         String[] operation = mDisplay.split(Pattern.quote(mCurrentOperator));
         if(operation.length < 2) return false;
+        if(mNegativeFlag) {
+            operation[0] = '-' + operation[0];
+            mDisplay = '-' + mDisplay;
+            mNegativeFlag = false;
+        }
+        Log.d("a", operation[0]);
         mResult = String.format("%.5f", operate(operation[0], operation[1], mCurrentOperator));
+
         //set data in db
         History history = new History(mCurrentUsername, operation[0], operation[1],
                 mCurrentOperator, mResult);
